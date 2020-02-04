@@ -52,7 +52,7 @@
 #include "ns3/dsdv-module.h"  
 
 #include "ns3/epidemic-helper.h"
-
+#include "ns3/netanim-module.h"
 
 
 using namespace ns3;
@@ -332,8 +332,9 @@ int main (int argc, char *argv[])
    Config::Connect("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/Tx", MakeCallback(&SentPacket)); 
   Config::Connect("/NodeList/*/ApplicationList/*/$ns3::PacketSink/Rx", MakeCallback(&ReceivedPacket));
   Simulator::Stop (Seconds (TotalTime));
+  AnimationInterface anim("animation.xml");
   Simulator::Run ();
-  //Ratio();
+  Ratio();
   Simulator::Destroy ();
   return 0;
 }
